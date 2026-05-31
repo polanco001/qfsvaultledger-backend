@@ -18,7 +18,7 @@ dotenv.config();
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: 'https://legendary-longma-a6d359.netlify.app' }));
+app.use(cors({ origin: 'https://qfsvaultledger-frontend.vercel.app/' }));
 app.use(express.json({ limit: '10kb' }));
 app.use(mongoSanitize());
 app.use(xss());
@@ -55,7 +55,7 @@ app.use((err, req, res, next) => {
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'https://legendary-longma-a6d359.netlify.app',
+    origin: 'https://https://qfsvaultledger-frontend.vercel.app/',
     methods: ['GET', 'POST']
   }
 });
