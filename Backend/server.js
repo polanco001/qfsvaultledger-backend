@@ -18,10 +18,8 @@ dotenv.config();
 const app = express();
 
 app.use(helmet());
-
-// ✅ Replace '*' with your actual Vercel frontend URL
+// ✅ CORS for your frontend
 app.use(cors({ origin: 'https://qfsvaultledger-frontend.vercel.app' }));
-
 app.use(express.json({ limit: '10kb' }));
 app.use(mongoSanitize());
 app.use(xss());
@@ -56,7 +54,7 @@ app.use((err, req, res, next) => {
 
 // ─── SOCKET.IO SETUP ───
 const server = http.createServer(app);
-// ✅ Also set the Socket.io CORS to the same frontend URL
+// ✅ Socket.io CORS
 const io = socketIo(server, {
   cors: {
     origin: 'https://qfsvaultledger-frontend.vercel.app',
@@ -88,7 +86,6 @@ io.on('connection', (socket) => {
     console.log(`🔑 Admin joined admins room: ${socket.user.email}`);
   }
 
-  // Send a message
   socket.on('sendMessage', async (data, callback) => {
     try {
       const { text, receiverId } = data;
@@ -113,7 +110,6 @@ io.on('connection', (socket) => {
     }
   });
 
-  // Edit a message
   socket.on('editMessage', async (data, callback) => {
     try {
       const { messageId, newText } = data;
@@ -148,3 +144,4 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
