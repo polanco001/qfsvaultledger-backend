@@ -56,6 +56,7 @@ app.use((err, req, res, next) => {
 const server = http.createServer(app);
 // ✅ Socket.io CORS
 const io = socketIo(server, {
+  const io = socketIo(server, {
   cors: {
     origin: 'https://qfsvaultledger-frontend.vercel.app',
     methods: ['GET', 'POST']
