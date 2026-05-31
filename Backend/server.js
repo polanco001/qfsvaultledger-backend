@@ -18,7 +18,7 @@ dotenv.config();
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: 'https://qfsvaultledger-frontend.vercel.app/' }));
+app.use(cors({ origin: 'https://qfsvaultledger-frontend.-5hor.vercel.app/' }));
 app.use(express.json({ limit: '10kb' }));
 app.use(mongoSanitize());
 app.use(xss());
@@ -55,7 +55,7 @@ app.use((err, req, res, next) => {
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'https://https://qfsvaultledger-frontend.vercel.app/',
+    origin: 'https://https://qfsvaultledger-frontend-5hor.vercel.app/',
     methods: ['GET', 'POST']
   }
 });
